@@ -19386,8 +19386,7 @@ var HtmlMediaSource = (function (_videojs$EventTarget) {
         throw error;
       }
 
-      var isUpdating = this.videoBuffer_ && this.videoBuffer_.updating;
-      if (!isUpdating && (end > this.nativeMediaSource_.duration || isNaN(this.nativeMediaSource_.duration))) {
+      if (end > this.nativeMediaSource_.duration || isNaN(this.nativeMediaSource_.duration)) {
         this.nativeMediaSource_.duration = end;
       }
     }
@@ -20600,7 +20599,7 @@ var VirtualSourceBuffer = (function (_videojs$EventTarget) {
       }
 
       if (this.appendAudioInitSegment_) {
-        console.log("HELLO BOSS!");
+        // add a check for sortedSegments.audio.initSegment
         if (!this.audioDisabled_ && this.audioBuffer_ && sortedSegments.audio.initSegment) {
           sortedSegments.audio.segments.unshift(sortedSegments.audio.initSegment);
           sortedSegments.audio.bytes += sortedSegments.audio.initSegment.byteLength;
